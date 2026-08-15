@@ -1,0 +1,36 @@
+/// Performs a Binary Search on a sorted list.
+/// Returns the index of the [target], or -1 if not found.
+int binarySearch(List<int> sortedList, int target) {
+  int min = 0;
+  int max = sortedList.length - 1;
+
+  while (min <= max) {
+    // Avoids integer overflow for large indices
+    int mid = min + ((max - min) ~/ 2); 
+
+    if (sortedList[mid] == target) {
+      return mid; // Target found
+    } else if (sortedList[mid] < target) {
+      min = mid + 1; // Search the right half
+    } else {
+      max = mid - 1; // Search the left half
+    }
+  }
+
+  return -1; // Target not found
+}
+
+void main() {
+  final numbers =;
+  final target = 23;
+
+  print('Searching for $target in: $numbers');
+  
+  final index = binarySearch(numbers, target);
+
+  if (index != -1) {
+    print('Success: Found $target at index $index.');
+  } else {
+    print('Error: $target does not exist in the list.');
+  }
+}
